@@ -23,9 +23,7 @@ const Sidebar = ({markers, onMarkerSelected, markerInfo}) => {
                    {m.title}
                 </button>
               </li>
-            )
-            )
-            }
+            ))}
         </ul>
         {markerInfo ? <MarkerInfo markerInfo={markerInfo} />  : null}
       </nav>

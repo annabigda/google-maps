@@ -5,6 +5,7 @@ import Sidebar from './Sidebar'
 import WikiAPI from './WikiAPI'
 import './App.css'
 
+// Build a wikipedia url with the correct parameters
 function buildWikiUrl(title) {
     return `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&explaintext&exintroa&titles=${title}&origin=*`
 }
@@ -116,11 +117,14 @@ class MapsApp extends React.Component {
     filterQuery: null,
     // Has the user clicked on any marker?
     clickedMarker: null,
+    // Cached marker infos
     markerInfo: {}
   }
 
   onMarkerSelected(m) {
+    // Set the marker clicked
     this.setState(_ => ({clickedMarker: m.id}))
+    // Only use the request when we never successed or we had error
     if (!this.state.markerInfo[m.id] || this.state.markerInfo[m.id].error) {
       WikiAPI.getMarkerInfo(m)
       .then(data => {
