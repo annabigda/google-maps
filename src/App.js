@@ -45,14 +45,17 @@ const markers = [
   }
 ]
 
-
+function gm_authFailure(){
+    window.alert("Google Maps error!")
+}
 
 class Map extends React.Component {
   // Load JS from google maps https://www.klaasnotfound.com/2016/11/06/making-google-maps-work-with-react/
   componentDidMount() {
-        window.initMap = this.initMap.bind(this);
+    window.initMap = this.initMap.bind(this);
+    window.gm_authFailure = gm_authFailure;
 
-        loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyBE_BEEs1_iQlWmtqsJP_4_1rueRYgFtQc&callback=initMap')
+    loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyBE_BEEs1_iQlWmtqsJP_4_1rueRYgFtQc&callback=initMap')
   }
 
   componentDidUpdate() {
@@ -180,5 +183,6 @@ function loadJS(src) {
     var script = window.document.createElement("script");
     script.src = src;
     script.async = true;
+    script.onerror = gm_authFailure;
     ref.parentNode.insertBefore(script, ref);
 }

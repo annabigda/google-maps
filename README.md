@@ -35,3 +35,15 @@ followed by
 You can then open your browser at `http://localhost:3000`
 
 If you make any changes the page will refresh
+
+## Production
+
+To run in production use:
+
+```
+npm run build
+serve -s build
+```
+
+and then navigate to `http://localhost:5000/`
+
